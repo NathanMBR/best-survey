@@ -1,2 +1,2 @@
-export * from './HashString'
-export * from './CompareHashedString'
+export * from './HashStringService'
+export * from './CompareHashedStringService'

@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 
-export class CompareHashedString {
+export class CompareHashedStringService {
   async execute(text: string, hash: string): Promise<boolean> {
     const result = await bcrypt.compare(text, hash)
 

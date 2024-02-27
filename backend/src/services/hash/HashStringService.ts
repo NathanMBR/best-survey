@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 
-export class HashString {
+export class HashStringService {
   constructor(private readonly saltRounds: number) {}
 
   async execute(text: string): Promise<string> {
