@@ -3,12 +3,24 @@ import type {
   User
 } from '@prisma/client'
 
-export class FindUserByEmailService {
+export namespace IFindUserByEmailService {
+  export type Request = {
+    email: string
+  }
+
+  export type Response = Promise<User | null>
+}
+
+export interface IFindUserByEmailService {
+  execute: (dto: IFindUserByEmailService.Request) => IFindUserByEmailService.Response
+}
+
+export class FindUserByEmailService implements IFindUserByEmailService {
   constructor(
     private readonly prisma: PrismaClient
   ) {}
 
-  async execute(email: string): Promise<User | null> {
+  async execute({ email }: IFindUserByEmailService.Request) {
     const user = await this.prisma.user.findFirst({
       where: {
         email
