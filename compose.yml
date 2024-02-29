@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16.2-alpine3.19
+    restart: 'no'
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "localhost", "-p", "5432", "-U", "admin", "-d", "best-survey"]
+      interval: 5s
+      timeout: 10s
+      retries: 20
+      start_period: 10s
+    environment:
+      - POSTGRES_DB=best-survey
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - 5432:5432
