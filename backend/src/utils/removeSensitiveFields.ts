@@ -1,23 +1,24 @@
-export const removeSensitiveFields = <T extends Record<string, unknown>>(payload: T, ...aditionalFieldsToOmit: Array<keyof T>): T => {
-  const defaultFieldsToOmit = [
-    'id',
-    'deletedAt'
-  ] as Array<keyof T>
+const defaultFieldsToOmit = [
+  'internalId',
+  'deletedAt'
+] as const
 
-  const newPayload = {
-    ...payload
-  }
+type DefaultKeys = typeof defaultFieldsToOmit[number]
 
+export const removeSensitiveFields = <Payload extends Record<string, unknown>, Key extends keyof Payload>(
+  payload: Payload,
+  ...additionalFieldsToOmit: Array<Key>
+): Omit<Payload, Key | DefaultKeys> => {
   const fieldsToOmit = [
     ...defaultFieldsToOmit,
-    ...aditionalFieldsToOmit
+    ...additionalFieldsToOmit
   ]
 
-  fieldsToOmit.forEach(
-    field => {
-      delete newPayload[field]
-    }
-  )
+  const newPayload = Object.fromEntries(
+    Object.entries(payload).filter(
+      ([key]) => !fieldsToOmit.includes(key as Key)
+    )
+  ) as Omit<Payload, Key | DefaultKeys>
 
   return newPayload
 }
