@@ -38,9 +38,6 @@ jobs:
         with:
           version: 8
 
-      - name: Enter backend directory
-        run: cd ./backend
-
       - name: Install node packages
         run: pnpm install
 
