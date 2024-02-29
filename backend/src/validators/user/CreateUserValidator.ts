@@ -36,26 +36,38 @@ const createUserSchema = zod.object({
 })
 /* eslint-enable camelcase */
 
-type CreateUserValidatorResponse = {
-  status: 'ERROR'
-  error: string
-} | {
-  status: 'SUCCESS'
-  data: zod.infer<typeof createUserSchema>
+export namespace ICreateUserValidator {
+  export type Request = unknown
+
+  type SuccessResponse = {
+    status: 'SUCCESS'
+    data: zod.infer<typeof createUserSchema>
+  }
+
+  type ErrorResponse = {
+    status: 'ERROR'
+    error: string
+  }
+
+  export type Response = SuccessResponse | ErrorResponse
 }
 
-export class CreateUserValidator {
-  execute(data: unknown): CreateUserValidatorResponse {
+export interface ICreateUserValidator {
+  execute: (data: ICreateUserValidator.Request) => ICreateUserValidator.Response
+}
+
+export class CreateUserValidator implements ICreateUserValidator {
+  execute(data: ICreateUserValidator.Request) {
     const validation = createUserSchema.safeParse(data)
 
     if (!validation.success)
       return {
-        status: 'ERROR',
+        status: 'ERROR' as const,
         error: getZodErrorMessage(validation.error)
       }
 
     return {
-      status: 'SUCCESS',
+      status: 'SUCCESS' as const,
       data: validation.data
     }
   }
