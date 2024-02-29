@@ -6,6 +6,13 @@ export namespace Http {
     ) {}
   }
 
+  export type Request = {
+    headers?: Record<string, string>
+    params?: Record<string, string>
+    query?: Record<string, string>
+    body?: unknown
+  }
+
   export type Response = {
     status: number
     body: Record<string, unknown> | Issue
