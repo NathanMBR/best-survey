@@ -20,7 +20,7 @@ export class CreateUserController {
     private readonly createUserService: ICreateUserService
   ) {}
 
-  async handle(body: unknown): Promise<Http.Response> {
+  async handle({ body }: Http.Request): Promise<Http.Response> {
     const validation = this.createUserValidator.execute(body)
 
     if (validation.status === 'ERROR')
