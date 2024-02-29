@@ -15,6 +15,10 @@ export namespace Http {
 
   export type Response = {
     status: number
-    body: Record<string, unknown> | Issue
+    body?: Record<string, unknown> | Issue
+  }
+
+  export interface Controller {
+    handle(request: Request): Promise<Response>
   }
 }
