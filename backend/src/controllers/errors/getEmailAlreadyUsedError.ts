@@ -1,8 +1,6 @@
-export const getEmailAlreadyUsedError = () => {
-  const error = {
-    message: 'Email already used',
-    code: 'EMAIL_ALREADY_USED'
-  }
+import { Http } from '../Http'
 
-  return error
-}
+export const getEmailAlreadyUsedError = () => new Http.Issue(
+  'Email already used',
+  'EMAIL_ALREADY_USED'
+)

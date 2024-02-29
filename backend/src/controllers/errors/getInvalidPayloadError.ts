@@ -1,8 +1,6 @@
-export const getInvalidPayloadError = (message: string) => {
-  const error = {
-    message,
-    code: 'INVALID_PAYLOAD'
-  }
+import { Http } from '../Http'
 
-  return error
-}
+export const getInvalidPayloadError = (message: string) => new Http.Issue(
+  message,
+  'INVALID_PAYLOAD'
+)
