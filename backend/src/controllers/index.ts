@@ -1,2 +1,2 @@
-export * from './HttpResponse'
+export * from './Http'
 export * from './errors'
