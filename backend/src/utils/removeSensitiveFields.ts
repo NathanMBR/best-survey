@@ -7,7 +7,7 @@ type DefaultKeys = typeof defaultFieldsToOmit[number]
 
 export const removeSensitiveFields = <Payload extends Record<string, unknown>, Key extends keyof Payload>(
   payload: Payload,
-  ...additionalFieldsToOmit: Array<Key>
+  additionalFieldsToOmit: Array<Key>
 ): Omit<Payload, Key | DefaultKeys> => {
   const fieldsToOmit = [
     ...defaultFieldsToOmit,
