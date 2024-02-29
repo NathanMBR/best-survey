@@ -9,10 +9,13 @@ on:
       - master
       - development
 jobs:
-  publish:
+  test:
     name: Testing
     runs-on: ubuntu-latest
     container: node:20.11.1-alpine3.19
+    defaults:
+      run:
+        working-directory: ./backend
     services:
       db:
         image: postgres:16.2-alpine3.19
