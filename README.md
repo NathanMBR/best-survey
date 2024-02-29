@@ -1,6 +1,6 @@
 # best-survey
 
-Surveys SaaS
+Open-source Surveys SaaS
 
 ## Issues with .eslintignore and VSCode
 
