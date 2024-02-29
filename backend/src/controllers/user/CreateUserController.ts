@@ -12,7 +12,7 @@ import {
   getEmailAlreadyUsedError
 } from '../errors'
 
-export class CreateUserController {
+export class CreateUserController implements Http.Controller {
   constructor(
     private readonly createUserValidator: ICreateUserValidator,
     private readonly findUserByEmailService: IFindUserByEmailService,
@@ -20,7 +20,7 @@ export class CreateUserController {
     private readonly createUserService: ICreateUserService
   ) {}
 
-  async handle({ body }: Http.Request): Promise<Http.Response> {
+  async handle({ body }: Http.Request) {
     const validation = this.createUserValidator.execute(body)
 
     if (validation.status === 'ERROR')
