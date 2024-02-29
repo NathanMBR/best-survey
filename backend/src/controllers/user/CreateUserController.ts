@@ -46,7 +46,7 @@ export class CreateUserController {
       password: hashedPassword
     })
 
-    const user = removeSensitiveFields(createdUser, 'password')
+    const user = removeSensitiveFields(createdUser, ['password'])
 
     return {
       status: 201,
