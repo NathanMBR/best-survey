@@ -180,6 +180,11 @@ describe('CreateUserController', () => {
 
     const SUTResponse = await SUT.handle(SUTRequest)
 
+    expect(SUTResponse.body).toHaveProperty('id')
+    expect(SUTResponse.body).toHaveProperty('name')
+    expect(SUTResponse.body).toHaveProperty('email')
+    expect(SUTResponse.body).toHaveProperty('createdAt')
+    expect(SUTResponse.body).toHaveProperty('updatedAt')
     expect(SUTResponse.body).not.toHaveProperty('internalId')
     expect(SUTResponse.body).not.toHaveProperty('deletedAt')
     expect(SUTResponse.body).not.toHaveProperty('password')
