@@ -23,7 +23,8 @@ export class FindUserByEmailService implements IFindUserByEmailService {
   async execute({ email }: IFindUserByEmailService.Request) {
     const user = await this.prisma.user.findFirst({
       where: {
-        email
+        email,
+        deletedAt: null
       }
     })
 
