@@ -23,8 +23,7 @@ export default defineConfig(
         exclude: [
           'node_modules',
           'build',
-          '.git',
-          'src/main/**/*'
+          '.git'
         ]
       }
     }
