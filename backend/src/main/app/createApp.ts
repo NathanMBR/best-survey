@@ -15,7 +15,7 @@ export const createApp = async () => {
   })
 
   await app.register(cors)
-  await app.register(fastifyRoutes, { prefix: '/api' })
+  app.register(fastifyRoutes, { prefix: '/api' })
 
   return app
 }

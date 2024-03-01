@@ -8,7 +8,7 @@ import {
 import { makeCreateUserController } from '../factories'
 import { fastifyRouteAdapter } from './fastifyRouteAdapter'
 
-export const userRoutes = async (
+export const userRoutes = (
   app: FastifyInstance,
   _options: FastifyRegisterOptions<FastifyPluginOptions>,
   done: HookHandlerDoneFunction

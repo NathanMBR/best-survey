@@ -7,12 +7,12 @@ import {
 
 import { userRoutes } from './userRoutes'
 
-export const fastifyRoutes = async (
+export const fastifyRoutes = (
   app: FastifyInstance,
   _options: FastifyRegisterOptions<FastifyPluginOptions>,
   done: HookHandlerDoneFunction
 ) => {
-  await app.register(userRoutes, { prefix: '/users' })
+  app.register(userRoutes, { prefix: '/users' })
 
   return done()
 }
