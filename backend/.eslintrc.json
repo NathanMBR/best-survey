@@ -80,6 +80,22 @@
         "ExportDeclaration": { "multiline": true, "minProperties": 2 }
       }
     ],
+    "object-curly-spacing": [
+      "error",
+      "always",
+      {
+        "arraysInObjects": false,
+        "objectsInObjects": true
+      }
+    ],
+    "array-bracket-spacing": [
+      "error",
+      "never",
+      {
+        "arraysInArrays": false,
+        "objectsInArrays": true
+      }
+    ],
     "no-multiple-empty-lines": [
       "error",
       {
