@@ -1,0 +1,9 @@
+### Create user
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "name": "John Doe", // greater than 3 characters
+  "email": "john@doe.com", // email not used before
+  "password": "john.doe"  // greater than 8 characters
+}
