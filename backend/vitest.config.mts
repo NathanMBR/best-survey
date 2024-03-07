@@ -1,6 +1,9 @@
 /// <reference types="vitest" />
+import {
+  defineConfig,
+  configDefaults
+} from 'vitest/config'
 import path from 'node:path'
-import { defineConfig } from 'vitest/config'
 
 export default defineConfig(
   async () => {
@@ -17,10 +20,21 @@ export default defineConfig(
       test: {
         watch: false,
         exclude: [
+          ...configDefaults.exclude,
           'node_modules',
           'build',
           '.git'
-        ]
+        ],
+        coverage: {
+          reporter: ['text', 'html'],
+          exclude: [
+            ...configDefaults.exclude,
+            'vitest-environment-integration',
+            // for some reason it doesn't remove the files bellow
+            './src/main/index.ts',
+            './src/main/server.ts'
+          ]
+        }
       }
     }
   }
