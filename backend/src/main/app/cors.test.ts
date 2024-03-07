@@ -1,3 +1,5 @@
+// @vitest-environment integration
+
 import {
   describe,
   beforeAll,
@@ -10,11 +12,10 @@ import {
 import type { FastifyInstance } from 'fastify'
 import supertest from 'supertest'
 
-import * as config from '@/config'
+import { prisma } from '@/config'
 import { createApp } from './createApp'
 
-vi.spyOn(config.prisma, '$connect').mockImplementation(() => Promise.resolve())
-Object.defineProperty(config, 'FASTIFY_LOGGER', { value: false }) // Mock constants
+vi.spyOn(prisma, '$connect').mockImplementation(() => Promise.resolve()) // CORS test doesn't require database connection
 
 describe('CORS', () => {
   let app: FastifyInstance
